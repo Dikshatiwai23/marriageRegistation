@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="AngularApp" ng-controller="MyCtrl">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!--<link rel="stylesheet" href="style.css">-->
+	<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">-->
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@300&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;
+			font-weight: 600;
+			background-image: url("https://www.usatoday.com/gcdn/presto/2021/08/03/USAT/8b9dcfb9-f8cb-4fe8-93fc-0945234e9523-GettyImages-1215684502.jpg");
+
+
+
+		}
+
+		/* https://img.freepik.com/free-photo/groom-putting-ring-bride-s-finger_1157-338.jpg?w=1060&t=st=1703739311~exp=1703739911~hmac=9b17515461d5feee260fa9b2f5af35530891376d3a07e2c32c8d54bd812cafc6*/
+
+
+
+		#div {
+
+			background-size: cover;
+			background-position: center;
+
+
+
+		}
+
+		#h2 {
+			text-align: center;
+		}
+
+		#navbar {
+			font-style: italic;
+			color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, .2);
+			color: white;
+
+		}
+
+		#navbar a {
+			color: aliceblue;
+		}
+
+
+
+
+		#form {
+			width: 480px;
+			padding: 16px;
+			position: relative;
+
+			background-color: rgba(0, 0, 0, .6);
+			font-style: italic;
+			color: seashell;
+			text-align: left;
+
+			margin: 20px;
+			box-shadow: 0 0 15px rgb(6, 6, 6);
+		}
+
+		#review {
+
+			width: 500px;
+			padding: 16px;
+			position: relative;
+			text-align: center;
+			font-style: italic;
+			background-color: rgba(0, 0, 0, .2);
+			color: white;
+			font-weight: 700;
+			margin: 20px;
+			box-shadow: 0 0 15px rgb(6, 6, 6);
+
+		}
+
+		#btn {
+			margin: 0.5em;
+			padding: 5px;
+			background-color: beige;
+			color: black;
+			border: 2px solid black;
+			border-radius: 5%;
+			cursor: pointer;
+
+		}
+
+		#btn1 {
+
+			padding-left: 90%;
+
+
+		}
+
+
+
+
+		#btn:hover {
+			background: rgb(11, 11, 11);
+			color: white;
+			
+
+		}
+
+		.error {
+			color: orangered;
+			font-size: 12px;
+			margin-top: 5px;
+			display: block;
+			font-weight: 600;
+			font-size: 100%;
+		}
+
+		#pdfViewer {
+			width: 550px;
+			height: 500px;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+		}
+	</style>
+
+</head>
+
+<body ng-controller="YourController">
+
+	<!--<div class="logo">
+            <img
+              id="imgLogo"
+              width="100px"
+              height="100px"
+              src="https://images.pexels.com/photos/1456613/pexels-photo-1456613.jpeg?auto=compress&cs=tinysrgb&w=600" />
+          
+          </div>
+          <br>-->
+
+		<nav class="navbar navbar-expand-lg " id="navbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarbtnltMarkup"
+				aria-controls="navbarbtnltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarbtnltMarkup">
+				<div class="navbar-nav">
+					<!--<a class="nav-item nav-link" href="/home">Home</a>-->
+
+					<a class="nav-item nav-link" id="login" href="/signin">Login</a>
+					<!--<a href="/table" class="nav-item nav-link">Members</a>
+					<a href="/chart" class="nav-item nav-link">Chart</a>
+-->
+
+				</div>
+			</div>
+		</nav>
+		
+		<!--<div ng-show="sw" id="div">
+			<button ng-click="close()">close</button>
+			<div id="pdfViewer"></div>
+		</div>-->
+		<div ng-hide="show" align="center">
+
+			<!-- <a href="/table" class="align-center" id="btn1"><button class="btn col-1 text-center" id="btn">Show Table</button></a>
+			-->
+
+			<form  enctype="multipart/form-data" id="form" name="registrationForm"
+				class="container" ng-hide="sw">
+				<h2 style="color:seashell" id="h2">Marriage Registration</h2>
+				<br>
+
+
+
+				<div class="form-group">
+					<label for="name">Name<span style="color: orangered;">*</span></label>
+					<input type="text" class="form-control" id="name" name="name" ng-model="user.name"
+						pattern="^[A-Za-z\s]{2,30}$" placeholder="Enter Your Name" maxlength="50" required>
+					<span class="error"
+						ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required ">Name is
+						required !</span>
+					<span class="error" ng-show="registrationForm.name.$dirty && registrationForm.name.$error.pattern">
+						Please enter a valid name (Name must be Starts from Capital and atleast 3 character and Maximum
+						30 character Only
+						).
+					</span>
+
+
+					<!-- <div ng-if="!user.name" class="error">
+						pattern="^[A-Za-z\s'-]{3,30}$"
+			<span>Required</span>
+		</div>
+		-->
+				</div>
+
+
+				<div class="row">
+					<div class="form-group col-6">
+						<label for="dob">Date of Birth <span style="color: orangered;">*</span></label>
+						<input type="date" class="form-control" name="dob" id="dob" ng-model="user.dob"
+							ng-change="calculateAge()" min="1965-01-01" max="{{ getCurrentDate() }}" required>
+						<span class="error"
+							ng-show="registrationForm.dob.$dirty && registrationForm.dob.$error.required">DOB is
+							required!</span>
+						<span class="error"
+							ng-show="registrationForm.dob.$dirty && registrationForm.dob.$error.min ">Year should be
+							above 1965</span>
+						<span class="error" ng-show="registrationForm.dob.$dirty &&registrationForm.dob.$error.max">Year
+							should be
+							below </span>
+
+					</div>
+
+					<div class="form-group col-6">
+						<label>Age:</label>
+						<input type="number" class="form-control" id="age" ng-model="user.age" readonly>
+						<span class="error" ng-show="isUnderage">
+
+							<p>You must be 21 years old or older to proceed.</p>
+						</span>
+					</div>
+				</div>
+				<span class="row">
+					<div class="form-group col-6">
+						<label for="mobile">Mobile Number<span style="color: orangered;">*</span></label>
+						<input type="text" class="form-control" name="mobile" maxlength="10" id="mobile"
+							ng-model="user.mobile" pattern="^[6-9]\d{9}$" placeholder="Enter Your Mobile Number"
+							required>
+						<span class="error"
+							ng-show="registrationForm.mobile.$dirty && registrationForm.mobile.$error.required ">Mobile
+							Number is required !</span>
+						<span class="error"
+							ng-show="registrationForm.mobile.$dirty && registrationForm.mobile.$error.pattern">
+							Please enter a valid Mobile Number.
+						</span>
+					</div>
+
+
+
+					<div class="form-group col-6">
+						<label for="exampleInputPassword1">Password<span style="color: orangered;">*</span></label>
+						<div class="d-flex">
+						<input type="password" class="form-control" id="pass" name="pass" ng-model="user.pass"
+							placeholder="Enter password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+							title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit"
+							required>
+							<span class="eye-icon mt-2" style="padding-left:2px;"ng-click="togglePasswordVisibility()">
+                <i class="fas" ng-class="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+            </span>
+            </div>
+						<span class="error"
+							ng-show="registrationForm.pass.$dirty && registrationForm.pass.$error.required ">Password is
+							required !</span>
+						<span class="error"
+							ng-show="registrationForm.pass.$dirty && registrationForm.pass.$error.pattern">
+							Password must be at least 8 characters long and include at least one uppercase letter, one
+							lowercase letter, and one digit.
+						</span>
+					</div>
+				</span>
+				<div class="form-group">
+					<label for="email">Email<span style="color: orangered;">*</span></label>
+					<input type="email" class="form-control" id="email" name="email" ng-model="user.email"
+						onchange="angular.element(this).scope().ffl()"
+						ng-pattern="/^([a-zA-Z0-9.%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}|[a-zA-Z0-9.%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\.[a-zA-Z]{2,})$/"
+						placeholder="Enter Your Email" required>
+					<!--
+							 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$"
+							[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$
+							^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\.[a-zA-Z]{2,}$ -->
+
+					<span class="error"
+						ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required ">Email is
+						required !</span>
+					<span class="error"
+						ng-show="registrationForm.email.$dirty && registrationForm.email.$error.pattern">
+						Please enter a valid Email-Id.
+					</span>
+					<span ng-show="yes" class="error">Email is Already Exist</span>
+
+
+				</div>
+				<div class="row ">
+					<div class="form-group col-6">
+						<label for="gender">Gender<span style="color: orangered;">*</span></label>
+						<select class="form-control" id="gender" name="gender
+						" ng-model="user.gender" ng-change="updateChart()" required>
+							<option value="" disabled="disabled">
+								Select Gender
+							</option>
+							<option value="Male" name="gender" required>Male</option>
+							<option value="Female" name="gender" required>Female</option>
+							<option value="Other" name="gender" required>Other</option>
+						</select>
+						<!-- <span class="error" ng-show="registrationForm.gender.$error.required ">Gender is required !</span>
+				  -->
+					</div>
+
+					<!--	<div class="form-group"><label for="role" >ROLE:</label>
+
+<select name="role" id="role" ng-model="user.role">
+  <option value="ROLE_ADMIN" name="role" > ADMIN</option>
+  <option value="ROLE_NORMAL" name="role">NORMAL</option>
+  
+</select>
+    </div>-->
+
+
+
+					<div class="form-group col-6">
+						<label for="maritalStatus">Marital Status<span style="color: orangered;">*</span></label>
+						<select class="form-control" id="maritalStatus" ng-model="user.maritalStatus"
+							ng-change="StatusChart()" required>
+							<option value="" disabled="disabled">
+								Select Status
+							</option>
+							<option value="Single" name="status">Single</option>
+							<option value="Married" name="status">Married</option>
+							<option value="Divorced" name="status">Divorced</option>
+						</select>
+						<!-- <span class="error" ng-show="registrationForm.status.$dirty && registrationForm.status.$error.required ">Marital Status is required !</span>
+				  -->
+					</div>
+				</div>
+
+				
+
+					<div class="row" style="padding-left: 15px; "><div style="display: flex; align-items: center;"><label >Pan <span
+								style="color: orangered;">*</span>
+						</label><label style="font-size: 12px;padding-right: 111px;">(Pdf only)</label><input type="file" id="pan" file-inputa ng-model="fileIsValid"
+							style="padding-left: 120px; display: none;" name="pan"
+							onchange="angular.element(this).scope().panfileSelected(this)" accept="application/pdf" required /></div>
+
+						<a class="btn btn col-5" id="btn" href="" ng-click="selectpan()">Select
+							Pan</a>
+						<span style="color:limegreen;font-size: 25px;" ng-show="pp"> &#10003;</span>
+					</div>
+					<div class="error" align="center" ng-show="panErrorMessage">{{
+						panErrorMessage }}</div>
+					<div align="right" style="color:limegreen ;padding-right: 11%;font-weight: bold;" ng-show="pp">
+						<p>{{ selectedFileNamepan }} </p>
+					</div>
+
+					<div class="row" style="padding-left: 15px;"><div style="display: flex; align-items: center;"><label>Aadhar
+							<span style="color: orangered;">*</span></label><label style="font-size: 12px;padding-right: 87px;">(Pdf only)</label><input type="file" id="adhar" file-inputb
+							ng-model="fileIsValid" style="padding-left: 102px; display: none;" name="adhar"
+							onchange="angular.element(this).scope().adharfileSelected(this)"  accept="application/pdf" required /> </div><a
+							class="btn btn col-5" id="btn" href="" ng-click="selectadhar()">Select
+							Aadhar</a>
+						<span style="color:limegreen;font-size: 25px;" ng-show="aa"> &#10003;</span>
+							</div>
+							<div class="error" align="right" ng-show="adharErrorMessage">{{
+						adharErrorMessage }}</div>
+					<div align="right" style="color:limegreen;padding-right: 11%; font-weight: bold;" ng-show="aa">
+						<p>{{ selectedFileNameadhar }}</p>
+					</div>
+					
+
+					<div class="row" style="padding-left: 15px;"><div style="display: flex; align-items: center;"><label >10th Marksheet 
+							<span style="color: orangered;">*</span></label><label style="font-size: 12px;padding-right: 32px;">(Pdf only)</label><input type="file" id="ten"
+							style="padding-left: 50px; display: none;" name="ten" file-inputc ng-model="fileIsValid"
+							onchange="angular.element(this).scope().tenfileSelected(this)"  accept="application/pdf" required /> </div><a
+							class="btn btn col-5" id="btn" href="" ng-click="selectten()">Select 10th
+							Marksheet</a><span style="color:limegreen;font-size: 25px;" ng-show="tt"> &#10003;</span>
+
+					</div>
+					<div class="error" align="center" ng-show="tenErrorMessage">{{
+						tenErrorMessage }}</div>
+					<div align="right" style="color:limegreen; padding-right: 11%;font-weight: bold;" ng-show="tt">
+						<p>{{ selectedFileNameten }}</p>
+					</div>
+
+
+					<div class="row" style="padding-left: 15px;">
+					<div style="display: flex; align-items: center;">	<label>12th Marksheet <span
+								style="color: orangered;">*</span></label> <label style="font-size: 12px;padding-right: 32px;">(Pdf only)</label><input type="file"
+							style="padding-left: 50px; display: none;" id="twelve" name="twelve" file-inputd 
+							ng-model="fileIsValid"  accept="application/pdf" onchange="angular.element(this).scope().twelvefileSelected(this)"
+							required /></div> <a class="btn btn col-5" id="btn" href="" ng-click="selecttwelve()">Select
+							12th Marksheet</a>
+						<span style="color:limegreen;font-size: 25px; " ng-show="ww"> &#10003;</span>
+
+
+					</div>
+					<div class="error" align="center" ng-show="twelveErrorMessage">{{
+						twelveErrorMessage }}
+					</div>
+					<div align="right" style="color:limegreen; padding-right: 11%;font-weight: bold;" ng-show="ww">
+						<p>{{ selectedFileNametwelve }}</p>
+					</div>
+
+					<sapn class="form-group">
+						<span ><div class="row " style="display: flex; align-items: center;">
+						<lable for="image" style="padding-left: 4%;" >Image <span
+								style="color: orangered;">*</span></lable><lable style="font-size: 12px; display: flex; align-items: center;"> (jpg, png only)</lable>
+						<input type="file" id="pic" name="image" file-input ng-model="fileIsValid"
+							onchange="angular.element(this).scope().imagefileSelected(this)" accept="image/*" style="display: none; ">
+						<a id="btn" ng-click="selectpic()" class="btn " style="margin-left: 16%;">Select Image</a>
+							</span>
+						<span ng-show="o" >
+							<img ng-src="{{imagePreview}}" alt="Image Preview" width="100px" height="110px"></span>
+				</span>
+			</div>
+				<div align="center" class="error" ng-show="imageErrorMessage">{{
+					imageErrorMessage }}</div>
+
+				<br>
+				</sapn>
+
+				<!-- Display selected file name -->
+				<!--<div ng-if="selectedFileName" >
+    Selected File: {{ selectedFileName }}
+     <center>
+  
+    <iframe ng-src="{{pdfSrc}}" width="800" height="500"></iframe>
+    <button ng-click="submitFile()" ng-disabled="!selectedFileName">Submit</button>
+
+  </center>-->
+				<!-- Add Bootstrap stylesheet and JavaScript library -->
+				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+				<!-- Your AngularJS code -->
+				<!-- Your AngularJS code -->
+				<div ng-if="selectedFileName">
+					<!--  Selected File: {{ selectedFileName }}-->
+					<center>
+						<button type="button" id="openModalBtn" style="display: none;" class="btn btn-primary"
+							data-toggle="modal" data-target="#myModal">
+							Open PDF
+						</button>
+					</center>
+
+					<!-- Modal -->
+					<div class="modal" data-backdrop="static" data-keyboard="false" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content ">
+
+								<!-- Modal Header -->
+								<div class="modal-header container1">
+									<h4 class="modal-title " style="color: black;">Selected File: {{ selectedFileName }}
+									</h4>
+									<button type="button" style="display: none;" id="btnn" class="close"
+										data-dismiss="modal">&times;</button>
+											<button type="button"  id="close"  ng-click="fileedit()" class="close"
+										data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal Body -->
+								<div class="modal-body">
+									<iframe ng-src="{{pdfSrc}}" width="100%" height="500" disabled></iframe>
+								</div>
+
+								<!-- Modal Footer -->
+								<div class="modal-footer container1" style="padding-right:220px ;">
+
+									<button ng-click="super()" class="btn btn-primary"
+										data-dismiss="modal">Submit</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+				<!--<a class="btn btn-warning" ng-model="formData.but" ng-click="showimg()" name="but" >Show
+									Image</a>-->
+
+
+				</span>
+
+
+
+				<div class="form-group">
+					<div class="row">
+						<label class="col-2">Area<span style="color: orangered;">*</span></label>
+
+						<div class="form-check col-2 md-4  ">
+							<input type="radio" class="form-check-input " id="rural" ng-model="user.area" value="Rural"
+								ng-change="change()" name="area" required>
+							Rural
+						</div>
+						<div class="form-check md-4">
+							<input type="radio" class="form-check-input" id="urban" ng-model="user.area" value="Urban"
+								ng-change="change()" name="area" required>
+							Urban
+						</div>
+						<!-- <span class="error" ng-show="registrationForm.area.$dirty && registrationForm.area.$error.required ">Area is required !</span>
+				  -->
+					</div>
+				</div>
+
+
+				<!--<div ng-if="user.area === 'urban'" class="row">-->
+				<div ng-show="user.area === 'Urban'" class="row">
+					<div class="col-md-6">
+						<label>District<span style="color: orangered;">*</span></label>
+						<select class="form-control" ng-model="user.district"
+							ng-options="district for district in urbanDistricts" required>
+							<option value="" disabled>Select District</option>
+
+						</select>
+						<!--<span class="error" ng-show="registrationForm.dis.$dirty && registrationForm.dis.$error.required ">District is required !</span>
+				  -->
+					</div>
+					<div class="col-md-6">
+						<label>City<span style="color: orangered;">*</span></label>
+						<select class="form-control" ng-model="user.city"
+							ng-options="city for city in urbanCities[user.district]" name="city">
+							<option value="" selected>Select City</option>
+						</select>
+						<!-- <span class="error" ng-show="registrationForm.city.$dirty && registrationForm.city.$error.required ">City is required !</span>
+				  -->
+					</div>
+
+				</div>
+
+				<!--	<div ng-if="user.area === 'rural'" class="row">-->
+				<div ng-show="user.area === 'Rural'" class="row">
+					<div class="col-md-6">
+						<label>District<span style="color: orangered;">*</span></label>
+						<select class="form-control" ng-model="user.district"
+							ng-options="district for district in ruralDistricts" name="dis">
+							<option value="" disabled="disabled">Select District</option>
+						</select>
+						<!--	<span class="error" ng-show="registrationForm.dis.$dirty && registrationForm.dis.$error.required ">District is required !</span>
+				  -->
+					</div>
+					<div class="col-md-6">
+						<label>Block<span style="color: orangered;">*</span></label>
+						<select class="form-control" ng-model="user.block"
+							ng-options="block for block in ruralBlocks[user.district]" name="block">
+							<option value="" disabled="disabled">Select Block</option>
+						</select>
+						<!--<span class="error" ng-show="registrationForm.block.$dirty && registrationForm.block.$error.required ">Block is required !</span>
+				  -->
+					</div>
+					<div class="col-md-12">
+						<label for="GramRural">Villege<span style="color: orangered;">*</span></label>
+						<input type="text" class="form-control" name="gram" id="gram" ng-model="user.gram"
+							pattern="^[A-Za-z\s']{2,30}$" placeholder="Enter Your Villege Name">
+					</div>
+					<span class="error"
+						ng-show="registrationForm.gram.$dirty && registrationForm.gram.$error.required ">Gram is
+						required !</span>
+					<span class="error" ng-show="registrationForm.gram.$dirty && registrationForm.gram.$error.pattern">
+						Please enter a valid Gram Name (letters and spaces only).
+					</span>
+				</div>
+				<div align="center"><a class="btn col-2" ng-click="Form()" id="btn">Save</a></div>
+
+		</div>
+
+
+
+		<!--	<div ng-show="show">-->
+		<div ng-show="show" id="div">
+
+			<br>
+
+
+			<div align="center">
+				<div class="container" id="review">
+					<h2 class="mt-5 text-center">Preview</h2>
+					<br>
+
+					<p class="reviewP">IMAGE:</p>
+					<img ng-src="{{imagePreview}}" alt="Image Preview" width="130px" height="130px">
+
+					<!--
+				<span id="span"><img id="showimg" src="" width="140px" height="140px">
+				</span>-->
+					<p class="reviewP">Name: {{reviewedPerson.name }}</p>
+					<p class="reviewP">Email: {{reviewedPerson.email}}</p>
+					<p class="reviewP">Gender: {{reviewedPerson.gender}}</p>
+					<p class="reviewP">Age: {{reviewedPerson.age}}</p>
+					<p class="reviewP">DOB: {{reviewedPerson.dob | date:'dd/MM/yyyy'}}</p>
+
+
+					</p>
+					<p class="reviewP">Mobile: {{reviewedPerson.mobile}}</p>
+					<p class="reviewP">Status: {{reviewedPerson.maritalStatus}}</p>
+					<p class="reviewP">Area: {{reviewedPerson.area}}</p>
+					<div ng-show="reviewedPerson.area === 'Rural'">
+						<p class="reviewP">District : {{reviewedPerson.district}}</p>
+						<p class="reviewP">Block : {{reviewedPerson.block}}</p>
+						<p class="reviewP">Villege : {{reviewedPerson.gram }}</p>
+					</div>
+
+
+					<div ng-show="reviewedPerson.area === 'Urban'">
+						<p class="reviewP">District : {{reviewedPerson.district}}</p>
+						<p class="reviewP">City : {{reviewedPerson.city}}</p>
+
+					</div>
+
+					<p class="reviewP">12th Marksheet: {{ selectedFileNametwelve }}</p>
+					<p class="reviewP">10th Marksheet: {{ selectedFileNameten }}</p>
+					<p class="reviewP">Pan: {{ selectedFileNamepan }}</p>
+					<p class="reviewP">Aadhar: {{ selectedFileNameadhar }}</p>
+
+					<div align="center">
+						<!--<a ng-click="submitForm()"><button class="btn col-1" id="btn"> Save</button></a>-->
+						<a ng-click="back()" class="btn col-2" id="btn">Edit
+
+						</a>
+						<button type="submit" id="btn" class="btn col-2" ng-click="saveForm()" ng-model="myVar"
+							ng-init="myVar = true">Submit</button>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		</form>
+	</div>
+
+	<!-- <div class="text-center"> <button type="submit" class="btn col-1"ng-click="saveForm()" id="btn">Save</button>
+          </div>-->
+	<br>
+
+	<script type="text/javascript">
+		if (performance.navigation.type == 2) {
+			location.reload(true);
+		}
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+	<script src="new.js">
+
+	</script>
+
+
+</body>
+
+</html>

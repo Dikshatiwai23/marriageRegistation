@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
+	<style>
+		body {
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			background-image: url("groom-putting-ring-bride-s-finger.jpg");
+			/*background-image: url("https://img.freepik.com/free-vector/modern-luxury-mandala-background_1035-8326.jpg?w=740&t=st=1705062883~exp=1705063483~hmac=6cda8f222bcec2cde20be5428fd59fb8f14210eb068afe46571efc9e691ba3e9");
+	background-image: url("https://www.usatoday.com/gcdn/presto/2021/08/03/USAT/8b9dcfb9-f8cb-4fe8-93fc-0945234e9523-GettyImages-1215684502.jpg");
+	background-image: url("https://cdn.pixabay.com/photo/2017/08/06/20/11/wedding-2595862_1280.jpg");
+			*/
+		}
+
+		#btn {
+			margin: 0.5em;
+			padding: 5px;
+			background-color: beige;
+			color: black;
+			border: 2px solid black;
+			border-radius: 5%;
+			cursor: pointer;
+
+		}
+
+
+		#navbar {
+			font-style: italic;
+			color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, .2);
+			color: white;
+
+		}
+
+
+
+		#navbar a {
+			color: aliceblue;
+		}
+
+		#para {
+			color: white;
+			
+			font-weight: bold;
+			font-size: medium;
+			
+			justify-content: left;
+			text-align: center;
+			font-style: italic;
+		
+			margin: 80px;
+
+
+		}
+
+		#review {
+
+			width: 370px;
+			padding: 16px;
+			position: relative;
+			background-color: rgba(0, 0, 0, .3);
+			font-style: italic;
+			color: white;
+			text-align: left;
+			margin-top: 20px;
+			box-shadow: 0 0 15px rgb(6, 6, 6);
+		}
+
+		#btn:hover {
+			background: rgb(11, 11, 11);
+			color: white;
+			
+
+		}
+	</style>
+	
+</head>
+
+<body ng-app="AngularApp">
+	<nav class="navbar navbar-expand-lg " id="navbar">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarbtnltMarkup"
+			aria-controls="navbarbtnltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarbtnltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" href="/newuser">Add New</a>
+
+			</div>
+		</div>
+	</nav>
+
+	<div ng-controller="MyCtrl">
+		<div>
+			<div class="row">
+				<div class="col" >
+					<div  id="para">
+					<h1 align="center"> Welcome</h1>We believe in the magic of love and the power of lifelong
+					partnerships. Our
+					platform is designed with a singular mission – to bring hearts together and create beautiful,
+					enduring connections.
+					<br>
+					Whether you're embarking on the journey of matrimony or seeking a companion to share life's joys, we
+					are here to make
+					your quest for love a joyous and meaningful experience.
+					
+					
+					
+			
+				</div>
+</div>
+				<div class="col-md-4">
+					<form action="/dologin" method="post" id="review">
+						<h1 style="text-align: center;">Log In</h1>
+						<div class="col-12">
+							<label for="email">Email:</label>
+							<input type="text" class="form-control" placeholder="Email" id="username" name="username"
+								required />
+						</div>
+						<div class="col-12 mt-2">
+							<label for="password">Password :</label>
+							<div class="d-flex">
+								<!--	<input type="password" class="form-control" id="pass" name="password" placeholder="Password" required>-->
+								<input type="password" id="pass" ng-model="password" class="form-control col-12"
+									name="password" placeholder="Password" required />
+								<span class="eye-icon mt-2" style="padding-left:2px;"
+									ng-click="togglePasswordVisibility()">
+									<i class="fas"
+										ng-class="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+								</span>
+							</div>
+						</div>
+
+						<div class="col-12 mt-3">
+							<div class="d-flex">
+								<label for="captcha" style="padding-right: 2%; padding-top: 1%;">Captcha: </label>
+								<input type="text" id="captcha" ng-model="userCaptcha" maxlength="6"
+									class="form-control col-5 mr-2" required />
+								<button style=" background-color: rgba(0, 0, 0, .6); color: white; border-radius: 10%;"
+									disabled>{{captcha}} </button>
+								<span ng-click="getCaptcha()" style="padding-left: 2%;"> <i class="fa fa-refresh"
+										style="font-size:24px;color: greenyellow;"></i></span>
+
+							</div>
+						</div>
+
+						<div ng-hide=true>
+							<button type="submit" id="log" class="btn btn-light">Signin</button>
+						</div>
+
+						<div align="center" class="mt-4">
+							<a class="btn col-3" ng-click="submitForm()" id="btn">Sign in</a>
+							<a class="btn col-1.5" id="btn" href="/newuser">Create New</a>
+						</div>
+						<br>
+
+						<p ng-show="showError" style="color: orangered; text-align: center;">{{errorMessage}}</p>
+						<div style="color: orangered;text-align: center;" th:if="${param.error}">
+							Invalid Username or Password
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="/new.js"></script>
+</body>
+
+</html>

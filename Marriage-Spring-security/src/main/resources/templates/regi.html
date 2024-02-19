@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AngularApp" ng-controller="MyCtrl">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Registration Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="style.css">
+	<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">-->
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@300&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;
+			font-weight: 600;
+			background-image: url("/groom-putting-ring-bride-s-finger.jpg");
+				}
+
+
+		#table {
+			margin-top: 20px;
+			width: 800px;
+			padding: 16px;
+			position: relative;
+			top: 20%;
+			font-weight: 900;
+			text-align: center;
+			font-style: italic;
+			color: white;
+			align-items: center;
+			background-color: rgba(0, 0, 0, .5);
+			margin: 20px;
+			box-shadow: 0 0 15px rgb(6, 6, 6);
+		}
+
+
+
+		#th {
+
+			color: white;
+			background-color: rgba(0, 0, 0, .4);
+		}
+
+		#div {
+
+			background-size: cover;
+			background-position: center;
+
+
+
+		}
+
+		#h2 {
+			text-align: center;
+		}
+
+		#navbar {
+			font-style: italic;
+			color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, .2);
+			color: white;
+
+		}
+
+
+
+
+
+		#form {
+			width: 440px;
+			padding: 16px;
+			position: relative;
+
+			background-color: rgba(0, 0, 0, .2);
+			font-style: italic;
+			color: seashell;
+			text-align: left;
+
+			margin: 20px;
+			box-shadow: 0 0 15px rgb(6, 6, 6);
+		}
+
+
+
+		#btn {
+			margin: 0.5em;
+			padding: 5px;
+			background-color: beige;
+			color: black;
+			border: 2px solid black;
+			border-radius: 5%;
+			cursor: pointer;
+
+
+		}
+
+
+
+
+
+
+		#btn:hover {
+			background: rgb(11, 11, 11);
+			color: white;
+
+
+		}
+
+		.error {
+			color: red;
+			font-size: 12px;
+			margin-top: 5px;
+			display: block;
+		}
+
+		#pdfViewer {
+			width: 550px;
+			height: 500px;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+		}
+
+
+		.dd {
+			background-color: rgba(0, 0, 0, .2);
+			color: white;
+			width: 600px;
+
+			border-radius: 10px;
+
+
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!--<div class="logo">
+            <img
+              id="imgLogo"
+              width="100px"
+              height="100px"
+              src="https://images.pexels.com/photos/1456613/pexels-photo-1456613.jpeg?auto=compress&cs=tinysrgb&w=600" />
+          
+          </div>
+          <br>-->
+
+	<div id="div" class="container-fluid">
+		<nav class="navbar navbar-expand-lg " id="navbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarbtnltMarkup"
+				aria-controls="navbarbtnltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarbtnltMarkup">
+				<div class="navbar-nav">
+					<!--		<a class="nav-item nav-link" href="/home">Home</a>-->
+
+					<a class="nav-item nav-link" href="/logout" id="btn">Log-Out</a>
+					<a class="nav-item nav-link" ng-click="gender()" id="btn">Show Compatible</a>
+					<!--<a href="/table" class="nav-item nav-link">Members</a>
+					<a class="nav-item nav-link" href="/about">About Us</a>
+					<a href="/chart" class="nav-item nav-link">Chart</a>
+-->
+
+				</div>
+			</div>
+		</nav>
+
+
+		<div ng-hide="table">
+			<div class="container dd col-6" ng-hide="regi">
+
+				<h2 class="mt-2 text-center" style="padding-top: 2%;">User Profile</h2>
+
+				<hr>
+				<div style="padding-left: 34%; margin:20px;">
+
+					<h3>
+						<p>Name: {{review.name }}</p>
+					</h3>
+
+					<div aling="left">
+						IMAGE:
+						<img ng-src="/getAllRegistrations/{{review.ufile.id}}" alt="User Image" width="140px"
+							height="140px" style="border-radius: 50%;">
+						<p>Email: {{review.email}}</p>
+						<p>Gender: {{review.gender}}</p>
+						<p>Age: {{review.age}}</p>
+						<p>DOB: {{review.dob | date:'dd/MM/yyyy'}}</p>
+
+
+						<p>Mobile: {{review.mobile}}</p>
+						<p>Status: {{review.maritalStatus}}</p>
+						<p>Area: {{review.area}}</p>
+						<div ng-show="review.area === 'Rural'">
+							<p>District : {{review.district}}</p>
+							<p>Block : {{review.block}}</p>
+							<p>Village : {{review.gram }}</p>
+						</div>
+
+
+						<div ng-show="review.area === 'Urban'">
+							<p>District : {{review.district}}</p>
+							<p>City : {{review.city}}</p>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div align="center">
+					<a ng-click="Edit()" class="btn" id="btn">
+						<i class="fa fa-pencil" style="font-size:26px"></i>
+
+					</a>
+				</div>
+			</div>
+			<div ng-show="regi" align="center">
+				<form ng-submit="saveForm()" enctype="multipart/form-data" id="form" name="registrationForm">
+					<h2 style="color:seashell" id="h2">Update Your Profile</h2>
+					<br>
+
+
+
+					<div class="form-group">
+						<label for="name">Name<span style="color: orangered;">*</span></label>
+						<input type="text" class="form-control" id="name" name="name" ng-model="review.name"
+							pattern="^[A-Za-z\s]{2,30}$" placeholder="Enter Your Name" maxlength="50" required>
+						<span class="error"
+							ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required ">Name is
+							required !</span>
+						<span class="error"
+							ng-show="registrationForm.name.$dirty && registrationForm.name.$error.pattern">
+							Please enter a valid name (Name must be Starts from Capital and atleast 3 character and
+							Maximum
+							30 character Only
+							).
+						</span>
+
+					</div>
+
+
+					<div class="row">
+						<div class="form-group col-6">
+							<label for="dob">Date of Birth <span style="color: orangered;">*</span></label>
+							<input type="date" class="form-control" name="dob" id="dob" ng-model="review.dob"
+								ng-change="calculateAge()" min="1965-01-01" max="{{ getCurrentDate() }}" required>
+							<span class="error"
+								ng-show="registrationForm.dob.$dirty && registrationForm.dob.$error.required">DOB is
+								required!</span>
+							<span class="error"
+								ng-show="registrationForm.dob.$dirty && registrationForm.dob.$error.min ">Year should be
+								above 1965</span>
+							<span class="error"
+								ng-show="registrationForm.dob.$dirty &&registrationForm.dob.$error.max">Year
+								should be
+								below </span>
+
+						</div>
+
+						<div class="form-group col-6">
+							<label>Age:</label>
+							<input type="number" class="form-control" id="age" ng-model="review.age" readonly>
+							<span class="error" ng-show="isUnderage">
+
+								<p>You must be 21 years old or older to proceed.</p>
+							</span>
+						</div>
+					</div>
+					<span class="row">
+						<div class="form-group col-12">
+							<label for="mobile">Mobile Number<span style="color: orangered;">*</span></label>
+							<input type="text" class="form-control" name="mobile" maxlength="10" id="mobile"
+								ng-model="review.mobile" pattern="^[6-9]\d{9}$" placeholder="Enter Your Mobile Number"
+								required>
+							<span class="error"
+								ng-show="registrationForm.mobile.$dirty && registrationForm.mobile.$error.required ">Mobile
+								Number is required !</span>
+							<span class="error"
+								ng-show="registrationForm.mobile.$dirty && registrationForm.mobile.$error.pattern">
+								Please enter a valid Mobile Number.
+							</span>
+						</div>
+
+					</span>
+
+					<div class="row ">
+						<div class="form-group col-6">
+							<label for="gender">Gender<span style="color: orangered;">*</span></label>
+							<select class="form-control" id="gender" name="gender
+						" ng-model="review.gender" ng-change="updateChart()" required>
+								<option value="" disabled="disabled">
+									Select Gender
+								</option>
+								<option value="Male" name="gender" required>Male</option>
+								<option value="Female" name="gender" required>Female</option>
+								<option value="Other" name="gender" required>Other</option>
+							</select>
+
+						</div>
+
+						<div class="form-group col-6">
+							<label for="maritalStatus">Marital Status<span style="color: orangered;">*</span></label>
+							<select class="form-control" id="maritalStatus" ng-model="review.maritalStatus"
+								ng-change="StatusChart()" required>
+								<option value="" disabled="disabled">
+									Select Status
+								</option>
+								<option value="Single" name="status">Single</option>
+								<option value="Married" name="status">Married</option>
+								<option value="Divorced" name="status">Divorced</option>
+							</select>
+							<!-- <span class="error" ng-show="registrationForm.status.$dirty && registrationForm.status.$error.required ">Marital Status is required !</span>
+				  -->
+						</div>
+					</div>
+					<div align="center">
+						<a><button type="button" id="btn" class="col-2" ng-click="Back()">Back</button></a>
+						<a><button type="submit" id="btn" class="col-2" ng-click="UpdatePerson()">Update</button></a>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+
+
+		<div align="center" id="div" ng-show="table"><button type="button" id="btn" ng-click="close()">close</button>
+			<table class="table table-bordered " id="table">
+				<thead class="center">
+					<tr id="th">
+
+						<th>Name</th>
+
+						<th>Age</th>
+						<th>Gender</th>
+						<th>Marital Status</th>
+
+						<th>Image</th>
+						<th>Action</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="record in users">
+
+						<td>{{ record.name}}</td>
+						<td>{{ record.age }}</td>
+
+						<td>{{ record.gender }}</td>
+
+						<td>{{ record.maritalStatus }}</td>
+
+
+						<td><img ng-src="/getAllRegistrations/{{record.ufile.id}}" alt="User Image" width="59px"
+								height="59px">
+						</td>
+
+						<td><button id="btn" ng-click="open(record.id)" data-toggle="modal"
+								data-target="#myModal">view</button>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+			<!-- Your AngularJS code -->
+			<!-- Your AngularJS code -->
+			<div>
+
+				<center>
+
+				</center>
+
+				<!-- Modal -->
+				<div class="modal" data-backdrop="static" data-keyboard="false" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content ">
+
+							<!-- Modal Header -->
+							<div class="modal-header container1">
+
+								<button type="button" style="display: none;" id="btnn" class="close"
+									data-dismiss="modal">&times;</button>
+								<button type="button" id="close" ng-click="fileedit()" class="close"
+									data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal Body -->
+							<div class="modal-body">
+
+
+								<h3>
+									<p>Name: {{review1.name }}</p>
+								</h3>
+
+								<div aling="left">
+									IMAGE:
+									<img ng-src="/getAllRegistrations/{{review1.ufile.id}}" alt="User Image"
+										width="140px" height="140px" style="border-radius: 50%;">
+									<p>Email: {{review1.email}}</p>
+									<p>Gender: {{review1.gender}}</p>
+									<p>Age: {{review1.age}}</p>
+									<p>DOB: {{review1.dob | date:'dd/MM/yyyy'}}</p>
+
+
+									<p>Mobile: {{review1.mobile}}</p>
+									<p>Status: {{review1.maritalStatus}}</p>
+									<p>Area: {{review1.area}}</p>
+
+
+
+								</div>
+							</div>
+
+
+
+
+							<!-- Modal Footer -->
+							<div class="modal-footer container1" style="padding-right:220px ;">
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+
+
+		<div class="container dd" ng-show="v">
+
+
+			<h2 class="mt-5 text-center">User Profile</h2>
+
+			<hr>
+			<div style="padding-left: 34%; margin:20px;">
+
+				<h3>
+					<p>Name: {{review.name }}</p>
+				</h3>
+
+				<div aling="left">
+					IMAGE:
+					<img ng-src="/getAllRegistrations/{{review.ufile.id}}" alt="User Image" width="140px" height="140px"
+						style="border-radius: 50%;">
+					<p>Email: {{review.email}}</p>
+					<p>Gender: {{review.gender}}</p>
+					<p>Age: {{review.age}}</p>
+					<p>DOB: {{review.dob | date:'dd/MM/yyyy'}}</p>
+
+
+					<p>Mobile: {{review.mobile}}</p>
+					<p>Status: {{review.maritalStatus}}</p>
+					<p>Area: {{review.area}}</p>
+					<div ng-show="review.area === 'Rural'">
+						<p>District : {{review.district}}</p>
+						<p>Block : {{review.block}}</p>
+						<p>Village : {{review.gram }}</p>
+					</div>
+
+
+					<div ng-show="review.area === 'Urban'">
+						<p>District : {{review.district}}</p>
+						<p>City : {{review.city}}</p>
+					</div>
+
+
+				</div>
+
+
+
+				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+				<script type="text/javascript">
+					if (performance.navigation.type == 2) {
+						location.reload(true);
+					}
+
+
+				</script>
+				<script src="/new.js">
+				
+				</script>
+
+
+
+</body>
+
+</html>

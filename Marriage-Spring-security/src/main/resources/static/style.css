@@ -1,0 +1,159 @@
+	body {
+			font-family: 'Permanent Marker', cursive;
+			background-attachment: fixed;
+			 background-size:cover ;
+            background-position: center;
+			font-weight: 600;
+			  background-image: url(" https://img.freepik.com/free-photo/groom-putting-ring-bride-s-finger_1157-338.jpg?w=1060&t=st=1703739311~exp=1703739911~hmac=9b17515461d5feee260fa9b2f5af35530891376d3a07e2c32c8d54bd812cafc6");
+           
+		}
+		
+ 
+    
+    #div{
+		
+			 background-size:cover ;
+            background-position: center;
+          
+          
+
+	}
+	#h2{
+		text-align: center;
+	}
+        #navbar{
+		font-style: italic;
+            color: rgb(0, 0, 0);
+               background-color:rgba(0,0,0,.2);
+            color: white;
+            
+		}
+		#navbar a{
+			color:aliceblue;
+		}
+		
+		
+	
+		
+		#form{
+			width: 430px;
+            padding: 16px;
+             position: relative;
+   
+            background-color:rgba(0,0,0,.2);
+            font-style: italic;
+            color: seashell;
+           text-align: left;
+          
+            margin: 20px;
+            box-shadow: 0 0 15px rgb(6, 6, 6);
+		}
+		
+#review{
+	 
+	width: 500px;
+            padding: 16px;
+             position: relative;
+   
+     
+   
+            text-align:center;
+            font-style: italic;
+               background-color:rgba(0,0,0,.2);
+            color: white;
+            margin: 20px;
+            box-shadow: 0 0 15px rgb(6, 6, 6);
+	
+}
+
+		#btn {
+			margin: 0.5em;
+			padding: 5px;
+			background-color:beige;
+			color: black;
+			border: 2px solid black;
+			border-radius: 5%;
+			cursor: pointer;
+			
+			}
+		
+		#btn1 {
+			
+			padding-left: 90%;
+			
+
+		}
+		
+
+
+
+		#btn:hover {
+			background: rgb(11, 11, 11);
+			color: white;
+			transform: translateY(-3px);
+
+		}
+		.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+ #pdfViewer {
+            width: 550px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+/*@media (max-width: 767px) {
+
+			.table th,
+			.table td {
+				display: block;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			     .logo{
+        left:20%;font-family: 'Kalnia', serif;
+        https://cdn.shopify.com/s/files/1/2196/3271/files/Indian_wedding_planner_vs_Indian_wedding_stylist_1024x1024.jpg?v=1679913759
+    }
+     #imgLogo{   
+        border-radius: 50%;
+        align-items: center;
+         background-color:powderblue;
+            opacity: 0.8;
+    }
+			}
+				
+		/*#review1{
+	 
+	width: 800px;
+            padding: 16px;
+             position: relative;
+   
+    left: 20%;
+    
+   
+            text-align: center;
+            font-style: italic;
+            color: rgb(0, 0, 0);
+                background-color:rgb(255, 245, 238,0.6);
+            color: white;
+            margin: 20px;
+            box-shadow: 0 0 15px rgb(6, 6, 6);
+	
+}*/
+/*
+		#div {
+			background-size:cover ;
+            background-position: center;
+            
+	background-image: url("https://images.pexels.com/photos/6787009/pexels-photo-6787009.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+			 background-size:cover ;
+            background-position: center;
+            https://images.pexels.com/photos/998521/pexels-photo-998521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+            https://images.pexels.com/photos/1001849/pexels-photo-1001849.jpeg?auto=compress&cs=tinysrgb&w=600
+           
+		}*/

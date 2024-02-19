@@ -1,0 +1,45 @@
+body {
+font-family: 'Permanent Marker', cursive;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	font-weight: 800;
+	/*background-image: url("https://www6.royalbank.com/assets/di-secure/images/article/financial-beat/2021/one-big-trend-in-pandemic-weddings-928x529.jpg");*/
+			background-image: url("wedding.jpg");
+}
+
+#review1 {
+
+	width: 900px;
+	padding: 16px;
+	position: relative;
+    
+	left: 19%;
+	font-size: medium;
+
+justify-content: left;
+	text-align: center;
+	font-style: italic;
+	
+	background-color: rgb(0, 0, 0, 0.5);
+	 color: seashell;
+	margin: 20px;
+	box-shadow: 0 0 15px rgb(6, 6, 6);
+
+}
+
+#navbar {
+	font-style: italic;
+	color: aliceblue;
+	background-color: rgb(0, 0, 0, 0.4);
+	
+
+}
+
+#navbar a {
+	color: white;
+}
+#h2{
+		text-align: center;
+		
+	}
